@@ -1,19 +1,30 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import RegisterFormValidator from '../services/RegisterFormValidator';
+import RegisterService from '../services/RegisterService';
 
 function RegisterForm() {
+    const navigate = useNavigate();
     return (
       <div className="container">
         <Formik
           initialValues={{ name: '', password: '', email: '' }}
           validate={(values) => RegisterFormValidator.validate(values)}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+          RegisterService.registerUser(values)
+            .then((response) => {
+              alert('User registered successfully');
+              resetForm();
+              navigate('/');
+            })
+            .catch((error) => {
+              alert('Failed to register user: ' + error.message);
+            })
+            .finally(() => {
               setSubmitting(false);
-            }, 400);
-          }}
+            });
+        }}
         >
           {({ isSubmitting, errors, touched }) => (
             <Form>
