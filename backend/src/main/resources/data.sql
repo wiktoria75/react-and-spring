@@ -12,4 +12,10 @@ VALUES (
            'admin@com.com',
            '$2a$10$TVG8L.cWkzGBEjRvvpJx6.ZzyJkKxEer7BkGkwj1B.9RYZgHL7D3e', -- Encrypted password (bcrypt hash) for 'Admin123@'
            'ADMIN'
+        ),(
+           'a791802c-dfaa-43eb-b49a-82ce2ae4862c'
+           'wiki',
+           'wiki@pl.pl',
+           '$2a$10$s.ZSe7GWfICdf2Qen7NpPuQRatgT2AUfwUg5Rysq3mhAFcqNIA6MO',	-- Encrypted password (bcrypt hash) for 'Password123@'
+           'USER'
        );
