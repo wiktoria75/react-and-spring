@@ -11,9 +11,10 @@ function LoginForm() {
     const handleLogin = async (values, { setSubmitting }) => {
         try {
             const response = await loginUser(values.email, values.password);
-            sessionStorage.setItem('token', response.token);
             login(response, response.token);
-            navigate('/');
+            if (response.role === "USER") navigate('/books')
+            else if (response.role === "ADMIN") navigate('/kids')
+            else navigate('/');
         } catch (error) {
             console.error('Error while logging in:', error);
             setLoginError('Invalid email or password');

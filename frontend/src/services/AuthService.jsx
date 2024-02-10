@@ -29,21 +29,25 @@ export const loginUser = async(email, password) => {
 
 export const UserProvider = ({ children }) => {
   const initialToken = sessionStorage.getItem('token');
-  
-  const [user, setUser] = useState(null);
+  const userFromStorage = {role: sessionStorage.getItem('role'), email:sessionStorage.getItem('email')};
+
+  const [user, setUser] = useState(userFromStorage);
   const [token, setToken] = useState(initialToken);
 
   const login = (userData, userToken) => {
     setUser(userData);
     setToken(userToken);
     sessionStorage.setItem('token', userToken);
-    console.log(userData);
+    sessionStorage.setItem('email', userData.email);
+    sessionStorage.setItem('role', userData.role);
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
     sessionStorage.removeItem('token'); 
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('role');
   };
 
   return (
