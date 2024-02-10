@@ -1,10 +1,10 @@
-package com.app.app.user.model;
+package com.app.app.auth.model;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class RegisteredUserDto {
+public class RegisterRequestDto {
 
     @NotNull
     @Size(min = 8, max = 16)
