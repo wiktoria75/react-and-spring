@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import { getFinishedBooks, getUnfinishedBooks } from '../services/BookService';
+import BookService from '../services/BookService';
 import Book from './Book';
 
 const BookList = () => {
+
     const [showFinished, setShowFinished] = useState(false);
   
-    const books = showFinished ? getFinishedBooks() : getUnfinishedBooks();
+    const books = showFinished ? BookService.getFinishedBooks() : BookService.getUnfinishedBooks();
   
     return (
-      <Container>
+      <Container className='p-1'>
         <Row className="align-items-center">
           <Col xs={2}>
             <h2 className="mt-4 mb-4">My Books:</h2>
