@@ -1,9 +1,14 @@
+import Header from "../components/Header";
 import { useUser } from "../services/AuthService"
 
 const AdminPage = () => {
     const { user } = useUser();
     return (
-            <p>Witaj, {user.name} {user.email} {user.role}</p>
+        <div>
+          <Header>
+            <p>Witaj, {user.role} {user.email}</p>
+          </Header> 
+        </div>
     );
 };
 
