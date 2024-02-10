@@ -16,7 +16,7 @@ class RegisterFormValidator {
         errors.passwordLowercaseLetter = 'Password must contain at least one lowercase letter';
       }
       if (!/(?=.*[A-Z])/.test(values.password)) {
-        errors.passwordUpercaseLetter = 'Password must contain at least one uppercase letter';
+        errors.passwordUppercaseLetter = 'Password must contain at least one uppercase letter';
       }
       if (!/(?=.*\d)/.test(values.password)) {
         errors.passwordNumber = 'Password must contain at least one number';
