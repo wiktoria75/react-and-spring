@@ -4,7 +4,7 @@ import com.app.app.auth.config.JwtService;
 import com.app.app.auth.model.AuthRequestDto;
 import com.app.app.auth.model.AuthResponseDto;
 import com.app.app.auth.model.RegisterRequestDto;
-import com.app.app.user.AppUserRepository;
+import com.app.app.user.repository.AppUserRepository;
 import com.app.app.user.model.AppUser;
 import com.app.app.user.service.AppUserMapper;
 import org.springframework.security.authentication.AuthenticationManager;
