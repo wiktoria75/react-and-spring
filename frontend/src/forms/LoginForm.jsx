@@ -26,7 +26,7 @@ function LoginForm() {
         <div className="container">
             {loginError && <div className="alert alert-danger">{loginError}</div>}
             <Formik
-                initialValues={{ email: 'wiki@pl.pl', password: 'Password123@' }}
+                initialValues={{ email: 'admin@com.com', password: 'Admin123@' }}
                 onSubmit={handleLogin}
             >
                 {({ isSubmitting }) => (
