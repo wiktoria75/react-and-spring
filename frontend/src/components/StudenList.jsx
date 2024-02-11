@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import StudentService from '../pages/StudentService';
+import StudentService from '../services/StudentService';
 import Student from './Student';
+import { useUser } from '../services/AuthService';
 
 const StudentList = () => {
     const [students, setStudents] = useState([]);
+    const { user, token } = useUser();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const studentsData = await StudentService.getAllStudents();
+                const studentsData = await StudentService.getAllStudents(token);
                 setStudents(studentsData);
             } catch (error) {
                 console.error('Error fetching students:', error);
@@ -26,7 +28,7 @@ const StudentList = () => {
                 </Col>
             </Row>
             {students.map((student, index) => (
-                <Student key={index} name={student.name} email={student.email} booksCount={student.booksCount} />
+                <Student key={index} name={student.name} email={student.email} booksCount={student.bookCount} />
             ))}
         </Container>
     );
