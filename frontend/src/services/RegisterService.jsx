@@ -10,11 +10,11 @@ class RegisterService {
         });
   
         if (!response.ok) {
-            const errorMessage = await response.text(); // Get error message as text
-            throw new Error(errorMessage); // Throw error with the message
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
           }
     
-          return await response.text(); // Return response body as text
+          return await response.text();
         } catch (error) {
           throw new Error(error.message);
         }
