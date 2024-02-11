@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import RegisterFormValidator from '../services/RegisterFormValidator';
+import RegisterFormValidator from '../services/validators/RegisterFormValidator';
 import RegisterService from '../services/RegisterService';
 
 function RegisterForm() {

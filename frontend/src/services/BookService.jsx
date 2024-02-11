@@ -1,25 +1,45 @@
 class BookService {
-    static books = [
-          { title: 'Book 1', author: 'Author 1', note: 'This is my note', finished: true },
-          { title: 'Book 2', author: 'Author 2', note: 'This is my note', finished: false },
-          { title: 'Book 3', author: 'Author 3', note: 'This is my note', finished: true },
-          { title: 'Book 4', author: 'Author 4', note: 'This is my note', finished: false },
-        ];
-      
-
-  static getFinishedBooks() {
-    return this.books.filter(book => book.finished);
-  };
   
-  static getUnfinishedBooks() {
-    return this.books.filter(book => !book.finished);
-  };
+  static async getUnfinishedBooks(token) {
+    try {
+      const response = await fetch('http://localhost:8080/books/unfinished', {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
+        return await response.json(); 
+      } catch (error) {
+        throw new Error(error.message);
+      }
+  }
+
+  static async getFinishedBooks(token) {
+    try {
+      const response = await fetch('http://localhost:8080/books/finished', {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
+        return await response.json(); 
+      } catch (error) {
+        throw new Error(error.message);
+      }
+  }
 
   static async addBook(token, book) {
     try {
-      const response = await fetch('http://localhost:8080/books', {
+      const response = await fetch('http://localhost:8080/books/add', {
         method: 'POST',
         headers: {
+            'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(book),
