@@ -1,6 +1,5 @@
 package com.app.app.auth.config;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,15 +29,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-//
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(toH2Console())
                         .disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(toH2Console()).permitAll())
                 .headers(headers -> headers.frameOptions(FrameOptionsConfig::disable))
-//                .requestMatchers(toH2Console()).permitAll()
-//                .csrf().ignoringRequestMatchers(toH2Console())
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.setAllowedOrigins(List.of("*"));
@@ -47,11 +43,10 @@ public class SecurityConfig {
                     return configuration;
                 }))
                 .authorizeHttpRequests(authRequests -> authRequests
-                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/register")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/authenticate")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/my-page/**")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/books/**")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(sessionMgmt -> sessionMgmt

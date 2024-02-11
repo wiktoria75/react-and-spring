@@ -47,7 +47,7 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany
+    @OneToMany(mappedBy = "appUser")
     private List<Book> books;
 
     @Override
